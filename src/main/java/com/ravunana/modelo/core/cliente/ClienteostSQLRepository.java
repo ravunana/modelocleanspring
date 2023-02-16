@@ -16,7 +16,7 @@ public class ClienteostSQLRepository implements IClienteRepository {
         this.clienteSpringDataRepository = clienteSpringDataRepository;
     }
     @Override
-    public Optional<Cliente> findByID(String id) {
+    public Optional<Cliente> findByID(Integer id) {
         return clienteSpringDataRepository.findById(id);
     }
 

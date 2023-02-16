@@ -1,5 +1,6 @@
 package com.ravunana.modelo.core.cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteMapper {
@@ -19,7 +20,7 @@ public class ClienteMapper {
     }
 
     public List<ClienteDTO> toListDto(List<Cliente> clientes) {
-        List<ClienteDTO> list = null;
+        List<ClienteDTO> list = new ArrayList<>();
 
         for ( var cliente : clientes) {
             var clienteDTO = new ClienteDTO();

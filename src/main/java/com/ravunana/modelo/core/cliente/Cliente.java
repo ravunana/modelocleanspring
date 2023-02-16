@@ -1,7 +1,6 @@
 package com.ravunana.modelo.core.cliente;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -10,8 +9,12 @@ import java.util.Objects;
 @Entity
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
     private String nome;
     private String email;
     private LocalDate aniversario;
@@ -25,7 +28,7 @@ public class Cliente implements Serializable {
         this.nif =nif;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

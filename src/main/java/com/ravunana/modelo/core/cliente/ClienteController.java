@@ -1,9 +1,8 @@
 package com.ravunana.modelo.core.cliente;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,6 +10,7 @@ import java.util.List;
 @RequestMapping("/api/clientes")
 @Validated
 public class ClienteController {
+    @Autowired
     private final IClienteService clienteService;
 
     public ClienteController(IClienteService clienteService) {
@@ -23,4 +23,8 @@ public class ClienteController {
         var clientes = clienteService.listClientes();
         return clienteMapper.toListDto(clientes);
     }
+
+    @PostMapping
+    public void createNewCliente(@RequestBody ClienteDTO clienteDTO){
+        clienteService.createCliente(clienteDTO); }
 }

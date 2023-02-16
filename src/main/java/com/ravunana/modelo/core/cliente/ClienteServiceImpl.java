@@ -1,10 +1,11 @@
 package com.ravunana.modelo.core.cliente;
 
 import com.ravunana.modelo.shared.exceptions.AppError;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ClienteServiceImpl implements IClienteService {
 
     private final IClienteRepository clienteRepository;
@@ -29,7 +30,8 @@ public class ClienteServiceImpl implements IClienteService {
 
         var clienteMapper = new ClienteMapper();
 
-        clienteRepository.save(clienteMapper.toEntity(clienteDTO));
+        clienteRepository.save(
+                clienteMapper.toEntity(clienteDTO));
     }
 
     @Override
@@ -38,21 +40,23 @@ public class ClienteServiceImpl implements IClienteService {
     }
 
     @Override
-    public Optional<Cliente> showCliente(String id) {
+    public Optional<Cliente> showCliente(Integer id) {
         return Optional.ofNullable(clienteRepository.findByID(id).orElseThrow(() -> new AppError("Cliente não encontrado")));
     }
 
     @Override
-    public void updateCLiente(String id) {
+    public void updateCLiente(Integer id) {
         var findedCliente = showCliente(id);
 
         clienteRepository.save(findedCliente.get());
     }
 
     @Override
-    public void deleteCliente(String id) {
+    public void deleteCliente(Integer id) {
         var findedCliente = showCliente(id);
 
         clienteRepository.delete(findedCliente.get());
     }
+
+
 }
